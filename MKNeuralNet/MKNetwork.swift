@@ -24,7 +24,6 @@ struct Network {
         case Rombus
     }
     
-    
     init (withShape geometry: Geometry, hiddenLayerCount: Int, inputCount: Int, outputCount: Int) {
         
         //Init nodal structure
@@ -39,7 +38,7 @@ struct Network {
                 structure.append(inputCount + extraWidth)
             }
         }
-
+        
         self.structure.append(outputCount)
         
         
@@ -55,14 +54,22 @@ struct Network {
         }
     }
     
-    func forwardPass(input: Matrix, var layer: Int = -1) -> Matrix {
+    /**
+     Forward pass through network
+     - Parameters:
+        - input: matrix of network inputs
+        - layer: optional, last layer to be investigated. Default behaviour of going through all layers
+     - Returns: Array of matricies representing layer activities
+     */
+    func activities(input: Matrix, var layer: Int = -1) -> [Matrix] {
         
         if layer == -1 {
             layer = self.weights.count - 1
         }
         
-        let activation = layer == 0 ? input * weights[layer] : forwardPass(input, layer: layer - 1) * weights[layer]
-        return activation.elementOperation(ActivationFunction.Sigmoid.evaluate)
+        let activity = activities(input, layer: layer - 1)
+        let activation = layer == 0 ? input * weights[layer] : activity.last! * weights[layer]
+        return activity + [activation.elementOperation(ActivationFunction.Sigmoid.evaluate)]
     }
     
     func backPropogation(input: Int ) -> Matrix {
