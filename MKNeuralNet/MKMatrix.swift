@@ -54,11 +54,29 @@ struct Matrix {
         
         return Matrix.init(array: returnArray, rows: self.rows, columns: self.columns)
     }
+    
+    func transpose() -> Matrix {
+        
+        let newRows = self.columns
+        let newColumns = self.rows
+        
+        var result = [Double]()
+        
+        for column in 0...columns {
+            for row in 0...rows {
+                result.append(self[column, row])
+            }
+        }
+        
+        return Matrix.init(array: result, rows: newRows, columns: newColumns)
+    }
 }
 
+prefix func - (matrix: Matrix) -> Matrix {
+    return Matrix.init(array: matrix.array.map{ -$0 }, rows: matrix.rows, columns: matrix.rows)
+}
 
 //This function multiplies an M-by-P matrix A by a P-by-N matrix B and stores the results in an M-by-N matrix C.
-
 func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.columns == rhs.rows)
@@ -75,11 +93,19 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 //This function adds two M-by-N matrices
-
 func + (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
+    
+    var result = [Double]()
+    
+    for (e1, e2) in zip(lhs.array, rhs.array) {
+        result.append(e1+e2)
+    }
+    
+    return Matrix.init(array: result, rows: lhs.rows, columns: lhs.columns)
+}
 
-    // FIXME:
-    return lhs
+func - (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return lhs + (-rhs)
 }

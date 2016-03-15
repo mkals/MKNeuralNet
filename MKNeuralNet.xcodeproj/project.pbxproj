@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90A25201C98034100E06B0E /* MKCostFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A251F1C98034100E06B0E /* MKCostFunction.swift */; };
 		E93A69D91C8F7F8B0080307E /* MKStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A69D81C8F7F8B0080307E /* MKStack.swift */; };
 		E9FE9C1D1C8C5D5900D838C3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C1C1C8C5D5900D838C3 /* main.swift */; };
 		E9FE9C2A1C8C5D8500D838C3 /* MKMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKMain.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E90A251F1C98034100E06B0E /* MKCostFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCostFunction.swift; sourceTree = "<group>"; };
 		E93A69D81C8F7F8B0080307E /* MKStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKStack.swift; sourceTree = "<group>"; };
 		E9FE9C191C8C5D5900D838C3 /* MKNeuralNet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MKNeuralNet; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FE9C1C1C8C5D5900D838C3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				E9FE9C291C8C5D8500D838C3 /* MKTraining.swift */,
 				E9FE9C241C8C5D8500D838C3 /* MKData.swift */,
 				E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */,
+				E90A251F1C98034100E06B0E /* MKCostFunction.swift */,
 				E93A69D81C8F7F8B0080307E /* MKStack.swift */,
 				E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */,
 				E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */,
@@ -149,6 +152,7 @@
 				E9FE9C2E1C8C5D8500D838C3 /* MKMatrix.swift in Sources */,
 				E9FE9C2F1C8C5D8500D838C3 /* MKErrors.swift in Sources */,
 				E9FE9C2A1C8C5D8500D838C3 /* MKMain.swift in Sources */,
+				E90A25201C98034100E06B0E /* MKCostFunction.swift in Sources */,
 				E9FE9C1D1C8C5D5900D838C3 /* main.swift in Sources */,
 				E9FE9C2B1C8C5D8500D838C3 /* MKData.swift in Sources */,
 				E9FE9C301C8C5D8500D838C3 /* MKTraining.swift in Sources */,
