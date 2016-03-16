@@ -54,22 +54,39 @@ struct Network {
         }
     }
     
+    func forwardPass(input: Matrix) -> Matrix {
+        var notOne: [Matrix]? = nil
+        var notTwo: [Matrix]? = nil
+        return forwardPass(input, activations: &notOne, activities: &notTwo)
+    }
+    
     /**
      Forward pass through network
      - Parameters:
         - input: matrix of network inputs
         - layer: optional, last layer to be investigated. Default behaviour of going through all layers
-     - Returns: Array of matricies representing layer activities
+     - Returns: matrix representing ybar (output layer activities)
      */
-    func activities(input: Matrix, var layer: Int = -1) -> [Matrix] {
+    func forwardPass(input: Matrix, inout activations: [Matrix]?, inout activities: [Matrix]?, var layer: Int = -1) -> Matrix {
         
         if layer == -1 {
             layer = self.weights.count - 1
         }
         
-        let activity = activities(input, layer: layer - 1)
-        let activation = layer == 0 ? input * weights[layer] : activity.last! * weights[layer]
-        return activity + [activation.elementOperation(ActivationFunction.Sigmoid.evaluate)]
+        let lastLayerActivity = layer == 0 ?
+            input :
+            forwardPass(input,
+                activations: &activations,
+                activities: &activities,
+                layer: layer - 1)
+
+        let activation =  lastLayerActivity * weights[layer]
+        let activity = activation.elementOperation(ActivationFunction.Sigmoid.evaluate)
+        
+        activations?.append(activity)
+        activities?.append(activation)
+        
+        return activity
     }
     
     func backPropogation(input: Int ) -> Matrix {

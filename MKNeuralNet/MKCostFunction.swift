@@ -11,14 +11,14 @@ import Foundation
 struct CostFunction {
     
     func evaluate(network: Network, inputData: Matrix, targetData: Matrix) -> Matrix {
-        let outputData = network.activities(inputData).last!
+        let outputData = network.forwardPass(inputData)
         return (targetData - outputData).elementOperation( { input in 0.5 * pow(input, 2) } )
     }
     
     func partialDerivatives(network: Network, inputData: Matrix, targetData: Matrix) -> Matrix {
-        let activities = network.activities(inputData)
+        let outputData = network.forwardPass(inputData)
         
-        return (activities.last! - targetData) //TODO: Implement properly
+        return (outputData - targetData) //TODO: Implement properly
         
     }
 }
