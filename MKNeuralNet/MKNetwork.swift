@@ -13,7 +13,6 @@ struct Network {
     
     private var structure = [Int]()
     private var weights = [Matrix]()
-    private var activations = [Matrix]()
     
     let geometry: Geometry
     let hiddenLayerCount: Int
@@ -22,6 +21,10 @@ struct Network {
     enum Geometry {
         case Rectangular
         case Rombus
+    }
+    
+    subscript(index: Int) -> Matrix {
+        return weights[index] //REP EXPOSURE if matrix is changed to class
     }
     
     init (withShape geometry: Geometry, hiddenLayerCount: Int, inputCount: Int, outputCount: Int) {
@@ -60,6 +63,10 @@ struct Network {
         return forwardPass(input, activations: &notOne, activities: &notTwo)
     }
     
+    func forwardPass(input: Matrix, inout activations: [Matrix]?, inout activities: [Matrix]?) -> Matrix {
+        return forwardPass(input, activations: &activations, activities: &activities, layer: self.weights.endIndex)
+    }
+    
     /**
      Forward pass through network
      - Parameters:
@@ -67,18 +74,11 @@ struct Network {
         - layer: optional, last layer to be investigated. Default behaviour of going through all layers
      - Returns: matrix representing ybar (output layer activities)
      */
-    func forwardPass(input: Matrix, inout activations: [Matrix]?, inout activities: [Matrix]?, var layer: Int = -1) -> Matrix {
-        
-        if layer == -1 {
-            layer = self.weights.count - 1
-        }
+    private func forwardPass(input: Matrix, inout activations: [Matrix]?, inout activities: [Matrix]?, layer: Int) -> Matrix {
         
         let lastLayerActivity = layer == 0 ?
             input :
-            forwardPass(input,
-                activations: &activations,
-                activities: &activities,
-                layer: layer - 1)
+            forwardPass(input, activations: &activations, activities: &activities, layer: layer - 1)
 
         let activation =  lastLayerActivity * weights[layer]
         let activity = activation.elementOperation(ActivationFunction.Sigmoid.evaluate)
@@ -89,10 +89,12 @@ struct Network {
         return activity
     }
     
+    /*
+    
     func backPropogation(input: Int ) -> Matrix {
         
         return Matrix.init(rows: structure.last!, columns: 1)
-    }
+    }*/
 }
 
 

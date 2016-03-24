@@ -92,18 +92,17 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     return Matrix.init(array: product, rows: m, columns: n)
 }
 
+//Elementwise multiplication
+infix operator ** { associativity left precedence 120}
+func ** (lhs: Matrix, rhs: Matrix) -> Matrix {
+    assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
+    return Matrix.init(array: Array(zip(lhs.array, rhs.array)).map { $0 * $1 }, rows: lhs.rows, columns: lhs.columns)
+}
+
 //This function adds two M-by-N matrices
 func + (lhs: Matrix, rhs: Matrix) -> Matrix {
-    
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
-    
-    var result = [Double]()
-    
-    for (e1, e2) in zip(lhs.array, rhs.array) {
-        result.append(e1+e2)
-    }
-    
-    return Matrix.init(array: result, rows: lhs.rows, columns: lhs.columns)
+    return Matrix.init(array: Array(zip(lhs.array, rhs.array)).map { $0 + $1 }, rows: lhs.rows, columns: lhs.columns)
 }
 
 func - (lhs: Matrix, rhs: Matrix) -> Matrix {

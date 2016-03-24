@@ -30,7 +30,6 @@ class Main {
     }
 }
 
-
 /* 
 
 - Launch net, decide siez from constants/dymanically from input data
