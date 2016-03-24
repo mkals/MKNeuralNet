@@ -77,7 +77,8 @@ prefix func - (matrix: Matrix) -> Matrix {
 }
 
 //This function multiplies an M-by-P matrix A by a P-by-N matrix B and stores the results in an M-by-N matrix C.
-func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+infix operator • { associativity left precedence 120}
+func • (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.columns == rhs.rows)
     
@@ -93,8 +94,7 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 //Elementwise multiplication
-infix operator ** { associativity left precedence 120}
-func ** (lhs: Matrix, rhs: Matrix) -> Matrix {
+func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     return Matrix.init(array: Array(zip(lhs.array, rhs.array)).map { $0 * $1 }, rows: lhs.rows, columns: lhs.columns)
 }
