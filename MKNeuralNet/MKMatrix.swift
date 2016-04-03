@@ -41,7 +41,7 @@ struct Matrix {
     }
     
     subscript (row: Int, column: Int) -> Double {
-        return array[row * self.columns + column]
+        return array[row * self.columns + column - 1]
     }
     
     func elementOperation(operation: Double -> Double) -> Matrix {

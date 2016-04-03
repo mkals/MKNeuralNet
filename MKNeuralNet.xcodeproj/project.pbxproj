@@ -11,6 +11,7 @@
 		E93A69D91C8F7F8B0080307E /* MKStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A69D81C8F7F8B0080307E /* MKStack.swift */; };
 		E9F0DFE71CB16BD600B53F9D /* MKNeuralNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */; };
 		E9F0DFED1CB16C1E00B53F9D /* testMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */; };
+		E9F0DFEE1CB1728000B53F9D /* MKMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */; };
 		E9FE9C1D1C8C5D5900D838C3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C1C1C8C5D5900D838C3 /* main.swift */; };
 		E9FE9C2A1C8C5D8500D838C3 /* MKMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKMain.swift */; };
 		E9FE9C2B1C8C5D8500D838C3 /* MKData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C241C8C5D8500D838C3 /* MKData.swift */; };
@@ -204,6 +205,7 @@
 			files = (
 				E9F0DFED1CB16C1E00B53F9D /* testMatrix.swift in Sources */,
 				E9F0DFE71CB16BD600B53F9D /* MKNeuralNetTests.swift in Sources */,
+				E9F0DFEE1CB1728000B53F9D /* MKMatrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
