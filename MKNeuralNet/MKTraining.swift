@@ -16,13 +16,8 @@ class Training {
     }
     
     func backPropogation() -> Double {
-        
-        
-        
         return 0.0
     }
-    
-    
 }
 
 /*
