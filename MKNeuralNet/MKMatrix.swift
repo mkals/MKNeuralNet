@@ -9,7 +9,7 @@
 import Foundation
 import Accelerate
 
-struct Matrix {
+struct Matrix: Equatable {
     
     private var array: [Double]
     
@@ -32,7 +32,7 @@ struct Matrix {
         
         self.array = [Double]()
         
-        for _ in 0 ... rows * columns {
+        for _ in 1 ... rows * columns {
             self.array.append(drand48())
         }
         
@@ -71,6 +71,14 @@ struct Matrix {
         return Matrix.init(array: result, rows: newRows, columns: newColumns)
     }
 }
+
+func ==(lhs: Matrix, rhs: Matrix) -> Bool {
+    guard lhs.array == rhs.array else {return false}
+    guard lhs.rows == rhs.rows else {return false}
+    guard lhs.columns == rhs.rows else {return false}
+    return true
+}
+
 
 prefix func - (matrix: Matrix) -> Matrix {
     return Matrix.init(array: matrix.array.map{ -$0 }, rows: matrix.rows, columns: matrix.rows)
