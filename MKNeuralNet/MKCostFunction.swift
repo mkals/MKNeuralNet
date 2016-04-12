@@ -10,29 +10,29 @@ import Foundation
 
 struct CostFunction {
     
-    func evaluate(network: Network, inputData: Matrix, targetData: Matrix) -> Matrix {
+    func evaluate(network: Network, inputData: Matrix<Double>, targetData: Matrix<Double>) -> Matrix<Double> {
         let outputData = network.forwardPass(inputData)
-        return (targetData - outputData).elementOperation( { input in 0.5 * pow(input, 2) } )
+        return (targetData - outputData).performElementOperation( { input in 0.5 * pow(input, 2) } )
     }
     
-    func partialDerivatives(network: Network, inputData: Matrix, targetData: Matrix) -> [Matrix] {
+    func partialDerivatives(network: Network, inputData: Matrix<Double>, targetData: Matrix<Double>) -> [Matrix<Double>] {
         
-        var activations = [Matrix]?()
-        var activities = [Matrix]?()
+        var activations = [Matrix<Double>]?()
+        var activities = [Matrix<Double>]?()
         
         let outputData = network.forwardPass(inputData, activations: &activations, activities: &activities)
         let layerCount = network.hiddenLayerCount
 
         
         /* LOOPING IMPLIMENTATION */
-        var differentiatedWeights = [Matrix]()
+        var differentiatedWeights = [Matrix<Double>]()
         
-        var delta: Matrix  = (outputData - targetData) * activations![layerCount].elementOperation(ActivationFunction.Sigmoid.derivate)
+        var delta: Matrix = (outputData - targetData) * activations![layerCount].performElementOperation(ActivationFunction.Sigmoid.derivate)
         
         for layer in layerCount...0 {
             
             if layer != layerCount {
-                delta = (delta * network[layer].transpose()) * activations![layer].elementOperation(ActivationFunction.Sigmoid.derivate)
+                delta = (delta * network[layer].transpose()) * activations![layer].performElementOperation(ActivationFunction.Sigmoid.derivate)
             }
             
             let derivative = layer != 0 ? activities![layer - 1].transpose() * delta : inputData.transpose() * delta
