@@ -20,21 +20,6 @@ protocol Number: Equatable, Comparable {
 extension Int: Number {}
 extension Double: Number {}
 
-extension Matrix where T:Double {
-    
-    /**
-     Initializes new matrix with doubles between 0 and 1
-     - Parameters:
-        - rows: number of rows that the matrix is to have
-        - columns: number of columns that the matrix is to have
-     - Precondition: rows and columns must exceed 0
-     - Returns: matrix with provided dimensions and double values between 0 and 1
-     */
-    init (rows: Int, columns: Int) {
-        return Matrix.init(rows: rows, columns: columns, arc4random)
-    }
-}
-
 struct Matrix <T: Number> : Equatable {
     
     /**
@@ -76,12 +61,13 @@ struct Matrix <T: Number> : Equatable {
      */
     init (rows: Int, columns: Int, functionToGenerateNumbers: () -> T) {
         
-        self.array = [T]()
+        var genArray = [T]()
         
         for _ in 1 ... rows * columns {
-            self.array.append(functionToGenerateNumbers())
+            genArray.append(functionToGenerateNumbers())
         }
         
+        self.array = genArray
         self.rows = rows
         self.columns = columns
     }
@@ -146,7 +132,7 @@ struct Matrix <T: Number> : Equatable {
 func == <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
     guard lhs.array == rhs.array else {return false}
     guard lhs.rows == rhs.rows else {return false}
-    guard lhs.columns == rhs.rows else {return false}
+    guard lhs.columns == rhs.columns else {return false}
     return true
 }
 
@@ -176,7 +162,7 @@ func • (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     let n = rhs.columns
     let p = lhs.columns
     
-    var product = [Double]()
+    var product = [Double](count: m*n, repeatedValue: 0.0)
     
     vDSP_mmulD(lhs.array, 1, rhs.array, 1, &product, 1, UInt(m), UInt(n), UInt(p))
     

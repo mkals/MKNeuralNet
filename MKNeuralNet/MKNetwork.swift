@@ -53,7 +53,7 @@ struct Network {
         
         //Build collection of weight matrices
         for layerCount in structure {
-            weights.append(Matrix.init(rows: (self.weights.last != nil ? self.weights.last!.columns : inputCount), columns: layerCount))
+            weights.append(Matrix.init(rows: (self.weights.last != nil ? self.weights.last!.columns : inputCount), columns: layerCount, functionToGenerateNumbers: drand48))
         }
     }
     
