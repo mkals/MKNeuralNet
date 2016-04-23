@@ -172,6 +172,7 @@ func • (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
 func * (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+    
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     
     var result = [Double](count: lhs.size, repeatedValue: 0)
@@ -198,9 +199,12 @@ func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  - Returns: matrix of same dimensionality but where every element has the opposite sign
  */
 prefix func - (matrix: Matrix<Double>) -> Matrix<Double> {
-    var result = [Double](count: matrix.size, repeatedValue: 0)
     
-    vDSP_vsmulD(matrix.array, 1, [-1.0], &result, 1, UInt(matrix.size)) //TODO: SCALAR MAY NEED WORK
+    var result = [Double](count: matrix.size, repeatedValue: 0)
+    var factor = -1.0
+    
+    vDSP_vsmulD(matrix.array, 1, &factor, &result, 1, UInt(matrix.size)) //TODO: SCALAR MAY NEED WORK
+    
     return Matrix.init(rows: matrix.rows, columns: matrix.columns, array: result)
 }
 
@@ -214,6 +218,6 @@ func - (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     
     var result = [Double](count: lhs.size, repeatedValue: 0)
-    vDSP_vsubD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
+    vDSP_vsubD(rhs.array, 1, lhs.array, 1, &result, 1, UInt(lhs.size))
     return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }

@@ -1,28 +1,28 @@
 //
-//  MKCostFunction.swift
+//  MKBackPropegation.swift
 //  MKNeuralNet
 //
-//  Created by Morten Kals on 15/03/16.
+//  Created by Morten Kals on 23/04/16.
 //  Copyright © 2016 Morten Kals. All rights reserved.
 //
 
 import Foundation
 
-struct CostFunction {
+extension Network {
     
-    func evaluate(network: Network, inputData: Matrix<Double>, targetData: Matrix<Double>) -> Matrix<Double> {
-        let outputData = network.forwardPass(inputData)
+    func evaluate(inputData: Matrix<Double>, targetData: Matrix<Double>) -> Matrix<Double> {
+        let outputData = self.forwardPass(inputData)
         return (targetData - outputData).performElementOperation( { input in 0.5 * pow(input, 2) } )
     }
     
-    func partialDerivatives(network: Network, inputData: Matrix<Double>, targetData: Matrix<Double>) -> [Matrix<Double>] {
+    func partialDerivatives(inputData: Matrix<Double>, targetData: Matrix<Double>) -> [Matrix<Double>] {
         
         var activations = [Matrix<Double>]?()
         var activities = [Matrix<Double>]?()
         
-        let outputData = network.forwardPass(inputData, activations: &activations, activities: &activities)
-        let layerCount = network.hiddenLayerCount
-
+        let outputData = self.forwardPass(inputData, activations: &activations, activities: &activities)
+        let layerCount = self.hiddenLayerCount
+        
         
         /* LOOPING IMPLIMENTATION */
         var differentiatedWeights = [Matrix<Double>]()
@@ -32,7 +32,7 @@ struct CostFunction {
         for layer in layerCount...0 {
             
             if layer != layerCount {
-                delta = (delta * network[layer].transpose()) * activations![layer].performElementOperation(ActivationFunction.Sigmoid.derivate)
+                delta = (delta * self[layer].transpose()) * activations![layer].performElementOperation(ActivationFunction.Sigmoid.derivate)
             }
             
             let derivative = layer != 0 ? activities![layer - 1].transpose() * delta : inputData.transpose() * delta
@@ -42,7 +42,7 @@ struct CostFunction {
         
         return differentiatedWeights
         
-         /*
+        /*
          //THEIR IMPLEMENTATION
          delta3 = np.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
          dJdW2 = np.dot(self.a2.T, delta3)
@@ -63,4 +63,5 @@ struct CostFunction {
          let djdw1 = inputData.transpose() • delta2
          */
     }
+
 }

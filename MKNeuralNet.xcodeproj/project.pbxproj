@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E90A25201C98034100E06B0E /* MKCostFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A251F1C98034100E06B0E /* MKCostFunction.swift */; };
 		E93A69D91C8F7F8B0080307E /* MKStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A69D81C8F7F8B0080307E /* MKStack.swift */; };
+		E9CB84141CCBD0BD00BCFDBD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84131CCBD0BD00BCFDBD /* main.swift */; };
+		E9CB84161CCBE14300BCFDBD /* MKForwardPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84151CCBE14300BCFDBD /* MKForwardPass.swift */; };
+		E9CB84181CCC005700BCFDBD /* MKBackPropegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84171CCC005700BCFDBD /* MKBackPropegation.swift */; };
 		E9F0DFE71CB16BD600B53F9D /* MKNeuralNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */; };
 		E9F0DFED1CB16C1E00B53F9D /* testMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */; };
 		E9F0DFEE1CB1728000B53F9D /* MKMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */; };
-		E9FE9C1D1C8C5D5900D838C3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C1C1C8C5D5900D838C3 /* main.swift */; };
-		E9FE9C2A1C8C5D8500D838C3 /* MKMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKMain.swift */; };
+		E9FE9C2A1C8C5D8500D838C3 /* MKNetMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */; };
 		E9FE9C2B1C8C5D8500D838C3 /* MKData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C241C8C5D8500D838C3 /* MKData.swift */; };
 		E9FE9C2C1C8C5D8500D838C3 /* MKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */; };
 		E9FE9C2D1C8C5D8500D838C3 /* MKActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */; };
@@ -23,27 +24,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E9FE9C171C8C5D5900D838C3 /* CopyFiles */ = {
+		E9FE9C171C8C5D5900D838C3 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E90A251F1C98034100E06B0E /* MKCostFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCostFunction.swift; sourceTree = "<group>"; };
 		E93A69D81C8F7F8B0080307E /* MKStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKStack.swift; sourceTree = "<group>"; };
+		E9CB84131CCBD0BD00BCFDBD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E9CB84151CCBE14300BCFDBD /* MKForwardPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKForwardPass.swift; sourceTree = "<group>"; };
+		E9CB84171CCC005700BCFDBD /* MKBackPropegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKBackPropegation.swift; sourceTree = "<group>"; };
 		E9F0DFE41CB16BD600B53F9D /* MKNeuralNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MKNeuralNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKNeuralNetTests.swift; sourceTree = "<group>"; };
 		E9F0DFE81CB16BD600B53F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testMatrix.swift; sourceTree = "<group>"; };
 		E9FE9C191C8C5D5900D838C3 /* MKNeuralNet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MKNeuralNet; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9FE9C1C1C8C5D5900D838C3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		E9FE9C231C8C5D8500D838C3 /* MKMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMain.swift; sourceTree = "<group>"; };
+		E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKNetMain.swift; sourceTree = "<group>"; };
 		E9FE9C241C8C5D8500D838C3 /* MKData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKData.swift; sourceTree = "<group>"; };
 		E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKNetwork.swift; sourceTree = "<group>"; };
 		E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKActivationFunction.swift; sourceTree = "<group>"; };
@@ -70,6 +73,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9CB84191CCC016300BCFDBD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */,
+				E9CB84151CCBE14300BCFDBD /* MKForwardPass.swift */,
+				E9CB84171CCC005700BCFDBD /* MKBackPropegation.swift */,
+				E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */,
+				E9FE9C291C8C5D8500D838C3 /* MKTraining.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		E9CB841A1CCC017400BCFDBD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E9FE9C241C8C5D8500D838C3 /* MKData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		E9CB841B1CCC019200BCFDBD /* Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				E93A69D81C8F7F8B0080307E /* MKStack.swift */,
+				E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */,
+				E9FE9C281C8C5D8500D838C3 /* MKErrors.swift */,
+			);
+			name = Functionality;
+			sourceTree = "<group>";
+		};
 		E9F0DFE51CB16BD600B53F9D /* MKNeuralNetTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,16 +134,11 @@
 		E9FE9C1B1C8C5D5900D838C3 /* MKNeuralNet */ = {
 			isa = PBXGroup;
 			children = (
-				E9FE9C1C1C8C5D5900D838C3 /* main.swift */,
-				E9FE9C231C8C5D8500D838C3 /* MKMain.swift */,
-				E9FE9C291C8C5D8500D838C3 /* MKTraining.swift */,
-				E9FE9C241C8C5D8500D838C3 /* MKData.swift */,
-				E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */,
-				E90A251F1C98034100E06B0E /* MKCostFunction.swift */,
-				E93A69D81C8F7F8B0080307E /* MKStack.swift */,
-				E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */,
-				E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */,
-				E9FE9C281C8C5D8500D838C3 /* MKErrors.swift */,
+				E9CB84131CCBD0BD00BCFDBD /* main.swift */,
+				E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */,
+				E9CB841A1CCC017400BCFDBD /* Data */,
+				E9CB84191CCC016300BCFDBD /* Network */,
+				E9CB841B1CCC019200BCFDBD /* Functionality */,
 			);
 			path = MKNeuralNet;
 			sourceTree = "<group>";
@@ -141,7 +169,7 @@
 			buildPhases = (
 				E9FE9C151C8C5D5900D838C3 /* Sources */,
 				E9FE9C161C8C5D5900D838C3 /* Frameworks */,
-				E9FE9C171C8C5D5900D838C3 /* CopyFiles */,
+				E9FE9C171C8C5D5900D838C3 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -213,16 +241,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CB84161CCBE14300BCFDBD /* MKForwardPass.swift in Sources */,
 				E9FE9C2C1C8C5D8500D838C3 /* MKNetwork.swift in Sources */,
 				E9FE9C2D1C8C5D8500D838C3 /* MKActivationFunction.swift in Sources */,
 				E93A69D91C8F7F8B0080307E /* MKStack.swift in Sources */,
 				E9FE9C2E1C8C5D8500D838C3 /* MKMatrix.swift in Sources */,
 				E9FE9C2F1C8C5D8500D838C3 /* MKErrors.swift in Sources */,
-				E9FE9C2A1C8C5D8500D838C3 /* MKMain.swift in Sources */,
-				E90A25201C98034100E06B0E /* MKCostFunction.swift in Sources */,
-				E9FE9C1D1C8C5D5900D838C3 /* main.swift in Sources */,
+				E9FE9C2A1C8C5D8500D838C3 /* MKNetMain.swift in Sources */,
+				E9CB84141CCBD0BD00BCFDBD /* main.swift in Sources */,
 				E9FE9C2B1C8C5D8500D838C3 /* MKData.swift in Sources */,
 				E9FE9C301C8C5D8500D838C3 /* MKTraining.swift in Sources */,
+				E9CB84181CCC005700BCFDBD /* MKBackPropegation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +386,7 @@
 				E9F0DFEA1CB16BD600B53F9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9FE9C141C8C5D5900D838C3 /* Build configuration list for PBXProject "MKNeuralNet" */ = {
 			isa = XCConfigurationList;
