@@ -105,11 +105,49 @@ class testMatrix: XCTestCase {
     }
     
     func testAddition() {
+        //test one element
+        let a = Matrix(rows: 1, columns: 1, array: [5.0])
+        let b = Matrix(rows: 1, columns: 1, array: [2.0])
+        let c = Matrix(rows: 1, columns: 1, array: [7.0])
         
+        XCTAssertEqual(a + b, c)
+        
+        //test row/coumn vectors
+        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
+        let e = Matrix(rows: 3, columns: 1, array: [4.0,5,6])
+        let f = Matrix(rows: 3, columns: 1, array: [5.0,7,9])
+        
+        XCTAssertEqual(d + e, f)
+        
+        //test full matrix
+        let g = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
+        let h = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,10,11,12])
+        let i = Matrix(rows: 3, columns: 3, array: [5.0,7,9,11,13,15,17,19,21])
+        
+        XCTAssertEqual(g + h, i)
     }
     
     func testSubstraciton() {
+        //test one element
+        let a = Matrix(rows: 1, columns: 1, array: [5.0])
+        let b = Matrix(rows: 1, columns: 1, array: [2.0])
+        let c = Matrix(rows: 1, columns: 1, array: [3.0])
         
+        XCTAssertEqual(a - b, c)
+        
+        //test row/coumn vectors
+        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
+        let e = Matrix(rows: 3, columns: 1, array: [4.0,5,6])
+        let f = Matrix(rows: 3, columns: 1, array: [3.0,3,3])
+        
+        XCTAssertEqual(d - e, f)
+        
+        //test full matrix
+        let g = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
+        let h = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,9,9,9])
+        let i = Matrix(rows: 3, columns: 3, array: [3.0,3,3,3,3,3,2,1,0])
+        
+        XCTAssertEqual(g - h, i)
     }
     
     func testUnarySubtraction() {

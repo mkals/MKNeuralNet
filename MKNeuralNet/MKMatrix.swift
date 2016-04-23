@@ -29,7 +29,12 @@ struct Matrix <T: Number> : Equatable {
     
     let rows: Int
     let columns: Int
-
+    
+    var size: Int {
+        get {
+            return self.rows * self.columns
+        }
+    }
     
     /**
      Initializes new matrix with given number of rows and columns and containing provided values
@@ -136,15 +141,6 @@ func == <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
     return true
 }
 
-/**
- Unary negative
- - Returns: matrix of same dimensionality but where every element has the opposite sign
- */
-prefix func - <T:Number>(matrix: Matrix<T>) -> Matrix<T> {
-    return Matrix.init(rows: matrix.rows, columns: matrix.rows, array: matrix.array.map{ -$0 })
-}
-
-
 infix operator • { associativity left precedence 120}
 
 /**
@@ -175,9 +171,12 @@ func • (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func * <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matrix<T> {
+func * (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
-    return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: Array(zip(lhs.array, rhs.array)).map { $0 * $1 })
+    
+    var result = [Double](count: lhs.size, repeatedValue: 0)
+    vDSP_vmulD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
+    return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }
 
 /**
@@ -185,9 +184,24 @@ func * <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matrix<T> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func + <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matrix<T> {
+func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+    
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
-    return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: Array(zip(lhs.array, rhs.array)).map { $0 + $1 })
+
+    var result = [Double](count: lhs.size, repeatedValue: 0)
+    vDSP_vaddD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
+    return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
+}
+
+/**
+ Unary negative
+ - Returns: matrix of same dimensionality but where every element has the opposite sign
+ */
+prefix func - (matrix: Matrix<Double>) -> Matrix<Double> {
+    var result = [Double](count: matrix.size, repeatedValue: 0)
+    
+    vDSP_vsmulD(matrix.array, 1, [-1.0], &result, 1, UInt(matrix.size)) //TODO: SCALAR MAY NEED WORK
+    return Matrix.init(rows: matrix.rows, columns: matrix.columns, array: result)
 }
 
 /**
@@ -195,7 +209,11 @@ func + <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matrix<T> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func - <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matrix<T> {
+func - (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+    
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
-    return lhs + (-rhs)
+    
+    var result = [Double](count: lhs.size, repeatedValue: 0)
+    vDSP_vsubD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
+    return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }
