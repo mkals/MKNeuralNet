@@ -9,23 +9,12 @@
 import Foundation
 import Accelerate
 
-protocol Number: Equatable, Comparable {
-    func +(lhs: Self, rhs: Self) -> Self
-    func -(lhs: Self, rhs: Self) -> Self
-    func *(lhs: Self, rhs: Self) -> Self
-    func /(lhs: Self, rhs: Self) -> Self
-    prefix func -(num: Self) -> Self
-}
-
-extension Int: Number {}
-extension Double: Number {}
-
-struct Matrix <T: Number> : Equatable {
+struct Matrix : Equatable {
     
     /**
      array to store matrix values: row one first, then row two etc.
      */
-    private let array: [T]
+    private let array: [Double]
     
     let rows: Int
     let columns: Int
@@ -45,7 +34,7 @@ struct Matrix <T: Number> : Equatable {
      - Precondition: rows * columns = array.count, rows and columns must exceed 0
      - Returns: matrix with privided size and values
      */
-    init (rows: Int, columns: Int, array: [T]) {
+    init (rows: Int, columns: Int, array: [Double]) {
         
         assert(array.count == rows * columns)
         
@@ -64,9 +53,9 @@ struct Matrix <T: Number> : Equatable {
      - Precondition: rows and columns must exceed 0
      - Returns: matrix with provided size and values
      */
-    init (rows: Int, columns: Int, functionToGenerateNumbers: () -> T) {
+    init (rows: Int, columns: Int, functionToGenerateNumbers: () -> Double) {
         
-        var genArray = [T]()
+        var genArray = [Double]()
         
         for _ in 1 ... rows * columns {
             genArray.append(functionToGenerateNumbers())
@@ -85,7 +74,7 @@ struct Matrix <T: Number> : Equatable {
      - Precondition: row and column must exceed 0 and not be larger than total number of rows and columns respectivley
      - Returns: number stored at spesifyed location
      */
-    subscript (row: Int, column: Int) -> T {
+    subscript (row: Int, column: Int) -> Double {
         return array[ (row - 1) * self.columns + (column - 1) ] //-1 as first index of matrix is 1,1 and first index of array is 0
     }
     
@@ -95,9 +84,9 @@ struct Matrix <T: Number> : Equatable {
         - operation: function to be performed on all elements of matrix
      - Returns: result as a new matrix
      */
-    func performElementOperation(operation: T -> T) -> Matrix {
+    func performElementOperation(operation: Double -> Double) -> Matrix {
         
-        var returnArray = [T]()
+        var returnArray = [Double]()
         
         for number in array {
             returnArray.append(operation(number))
@@ -115,7 +104,7 @@ struct Matrix <T: Number> : Equatable {
         let newRows = self.columns
         let newColumns = self.rows
         
-        var result = [T]()
+        var result = [Double]()
         
         for column in 1...columns {
             for row in 1...rows {
@@ -134,7 +123,7 @@ struct Matrix <T: Number> : Equatable {
  Equality comparison
  - Returns: weather matrices are equal (rows, columns and contained values are compared)
  */
-func == <T:Number>(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
+func == (lhs: Matrix, rhs: Matrix) -> Bool {
     guard lhs.array == rhs.array else {return false}
     guard lhs.rows == rhs.rows else {return false}
     guard lhs.columns == rhs.columns else {return false}
@@ -150,7 +139,7 @@ infix operator • { associativity left precedence 120}
     - B must be of dimensionality P-by-N
  - Returns: C, matrix of dimensionality M-by-N
  */
-func • (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+func • (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.columns == rhs.rows)
     
@@ -171,7 +160,7 @@ func • (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func * (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     
@@ -185,7 +174,7 @@ func * (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+func +(lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
 
@@ -198,7 +187,7 @@ func +(lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
  Unary negative
  - Returns: matrix of same dimensionality but where every element has the opposite sign
  */
-prefix func - (matrix: Matrix<Double>) -> Matrix<Double> {
+prefix func - (matrix: Matrix) -> Matrix {
     
     var result = [Double](count: matrix.size, repeatedValue: 0)
     var factor = -1.0
@@ -213,7 +202,7 @@ prefix func - (matrix: Matrix<Double>) -> Matrix<Double> {
  - Precondition: A and B must have same number of rows and columns
  - Returns: C, matrix of dimensionality equal to that of A and B
  */
-func - (lhs: Matrix<Double>, rhs: Matrix<Double>) -> Matrix<Double> {
+func - (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     

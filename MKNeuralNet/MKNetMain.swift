@@ -36,25 +36,19 @@ class MKNeuralNet {
     
     //Local variables
     let network: Network
-    
+    let trainer: Trainer
     
     /**
      - parameters:
         - inputData one row per data set (#datasets = #rows, #entries per data set = #columns). There shold be at least ... as many data sets as there is data.
         - targetData one row per data set (#datasets = #rows, #entries per data set = #columns)
      */
-    init(inputData: Matrix<Double>, targetData: Matrix<Double>) {
+    init(inputData: Matrix, targetData: Matrix) {
         
-        network = Network.init(withShape: Network.Geometry.Rectangular, hiddenLayerCount: inputData.size, inputCount: inputData.columns, outputCount: targetData.columns)
-        
-        
-        
-        
-        
+        network = Network.init(withShape: Network.Geometry.Rectangular, hiddenLayerCount: inputData.size+2, inputCount: inputData.columns, outputCount: targetData.columns)
+      
+        trainer = Trainer.init(network: network, inputData: inputData, targetData: targetData)
     }
-    
-    
-    
 }
 
 /* 

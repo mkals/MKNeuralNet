@@ -11,8 +11,10 @@ import Accelerate
 
 struct Network {
     
+    let activationFunction = ActivationFunction.Sigmoid
+    
     private var structure = [Int]()
-    var weights = [Matrix<Double>]()
+    var weights = [Matrix]()
     
     let geometry: Geometry
     let hiddenLayerCount: Int
@@ -23,7 +25,7 @@ struct Network {
         case Rombus
     }
     
-    subscript(index: Int) -> Matrix<Double> {
+    subscript(index: Int) -> Matrix {
         return weights[index] //REP EXPOSURE if matrix is changed to class
     }
     

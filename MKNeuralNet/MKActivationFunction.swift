@@ -14,9 +14,7 @@ protocol Function {
 }
 
 enum ActivationFunction {
-    
     case Sigmoid
-    
 }
 
 extension ActivationFunction: Function {
