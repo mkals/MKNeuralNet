@@ -38,28 +38,23 @@ extension Network {
     }
     
     
-    private func partialsOfLayer(layer: Int, lastLayerActivity: Matrix, targetData: Matrix) -> (partials: [Matrix], delta: Matrix) {
+    private func partialsOfLayer(layer: Int, lastLayerActivity: Matrix, targetData: Matrix) -> (partials: [Matrix], deltaTerm: Matrix) {
         
         //forward propegation
         let activation =  lastLayerActivity * weights[layer]
         let activity = activation.performElementOperation(ActivationFunction.Sigmoid.evaluate)
         
-        //edge case of forward propogation: layer = layerCount
-        let nextLayer: (partials: [Matrix], delta: Matrix) = ( layer == layerCount ?
+        //edge case: layer = layerCount
+        let nextLayer: (partials: [Matrix], deltaTerm: Matrix) = ( layer == layerCount ?
             ([Matrix](), activity - targetData) :
             partialsOfLayer(layer + 1, lastLayerActivity: activity, targetData: targetData)
         )
         
-        let deltaTerm = ( layer == layerCount ?
-            nextLayer.delta :
-            nextLayer.delta * self[layer].transpose()
-        )
-        
-        let delta = deltaTerm * activation.performElementOperation(activationFunction.derivate)
-        
+        //backwards propogation
+        let delta = nextLayer.deltaTerm * activation.performElementOperation(activationFunction.derivate)
         let partial = lastLayerActivity.transpose() * delta
         
-        return (partials: [partial] + nextLayer.partials, delta: delta)
+        return (partials: [partial] + nextLayer.partials, deltaTerm: delta * self[layer].transpose())
     }
         
         /*
