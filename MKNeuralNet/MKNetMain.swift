@@ -45,7 +45,7 @@ class MKNeuralNet {
      */
     init(inputData: Matrix, targetData: Matrix) {
         
-        network = Network.init(withShape: Network.Geometry.Rectangular, hiddenLayerCount: inputData.size+2, inputCount: inputData.columns, outputCount: targetData.columns)
+        network = Network.init(withShape: Network.Geometry.Rectangular, layerCount: inputData.size+2, inputCount: inputData.columns, outputCount: targetData.columns)
       
         trainer = Trainer.init(network: network, inputData: inputData, targetData: targetData)
     }

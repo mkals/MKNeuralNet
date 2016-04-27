@@ -34,35 +34,32 @@ extension Network {
      -returns: partial derivateive of output with respect to each weight matrix
      */
     func partials(inputData: Matrix, targetData: Matrix) -> [Matrix] {
-        return partialsOfLayer(0, inputActivity: inputData, targetData: targetData).partials
+        return partialsOfLayer(0, lastLayerActivity: inputData, targetData: targetData).partials
     }
     
     
-    private func partialsOfLayer(layer: Int, inputActivity lastLayerActivity: Matrix, targetData: Matrix) -> (partials: [Matrix], activity: Matrix, activation: Matrix, delta: Matrix) {
+    private func partialsOfLayer(layer: Int, lastLayerActivity: Matrix, targetData: Matrix) -> (partials: [Matrix], delta: Matrix) {
         
-        //base caes
-        if layer == self.hiddenLayerCount {
-            
-        }
-        
+        //forward propegation
         let activation =  lastLayerActivity * weights[layer]
         let activity = activation.performElementOperation(ActivationFunction.Sigmoid.evaluate)
         
-        let result = partialsOfLayer(layer + 1, inputActivity: activity, targetData: targetData)
+        //edge case of forward propogation: layer = layerCount
+        let nextLayer: (partials: [Matrix], delta: Matrix) = ( layer == layerCount ?
+            ([Matrix](), activity - targetData) :
+            partialsOfLayer(layer + 1, lastLayerActivity: activity, targetData: targetData)
+        )
         
+        let deltaTerm = ( layer == layerCount ?
+            nextLayer.delta :
+            nextLayer.delta * self[layer].transpose()
+        )
         
-        //outputData is result of forward call
+        let delta = deltaTerm * activation.performElementOperation(activationFunction.derivate)
         
-        //base case, TODO: is activity = output data for last layer?
-        var delta: Matrix = (activity - targetData) • result.activation.performElementOperation(activationFunction.derivate)
-        
-        delta = (result.delta * self[layer].transpose()) • activation.performElementOperation(ActivationFunction.Sigmoid.derivate)
-        
-        
-        //let partial = layer != 0 ? lastLayerActivity.transpose() * delta : inputData.transpose() * delta
         let partial = lastLayerActivity.transpose() * delta
         
-        return (partials: [partial] + result.partials, activity: activity, activation: activation, delta: delta)
+        return (partials: [partial] + nextLayer.partials, delta: delta)
     }
         
         /*

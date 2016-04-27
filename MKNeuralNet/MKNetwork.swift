@@ -17,7 +17,7 @@ struct Network {
     var weights = [Matrix]()
     
     let geometry: Geometry
-    let hiddenLayerCount: Int
+    let layerCount: Int
     let nodeCount: Int
     
     enum Geometry {
@@ -29,17 +29,17 @@ struct Network {
         return weights[index] //REP EXPOSURE if matrix is changed to class
     }
     
-    init (withShape geometry: Geometry, hiddenLayerCount: Int, inputCount: Int, outputCount: Int) {
+    init (withShape geometry: Geometry, layerCount: Int, inputCount: Int, outputCount: Int) {
         
         //Init nodal structure
-        for i in 0 ... hiddenLayerCount {
+        for i in 0 ... layerCount {
             
             switch geometry {
             case .Rectangular:
                 structure.append(inputCount + 1)
                 
             case .Rombus:
-                let extraWidth = hiddenLayerCount/2 - abs(hiddenLayerCount/2 - i)
+                let extraWidth = layerCount/2 - abs(layerCount/2 - i)
                 structure.append(inputCount + extraWidth)
             }
         }
@@ -49,7 +49,7 @@ struct Network {
         
         //Set constant properties
         self.geometry = geometry
-        self.hiddenLayerCount = hiddenLayerCount
+        self.layerCount = layerCount
         self.nodeCount = structure.reduce(0, combine: + )
         
         
