@@ -11,7 +11,7 @@ import Accelerate
 
 struct Network {
     
-    let activationFunction = ActivationFunction.Sigmoid
+    let activationFunction : ActivationFunctionable = SigmoidActivationFunction()
     
     private var structure = [Int]()
     var weights = [Matrix]()
@@ -21,12 +21,18 @@ struct Network {
     let nodeCount: Int
     
     enum Geometry {
-        case Rectangular
-        case Rombus
+        case rectangular
+        case rombus
     }
     
     subscript(index: Int) -> Matrix {
-        return weights[index] //REP EXPOSURE if matrix is changed to class
+        get {
+            return weights[index]
+        }
+        set {
+            assert(weights[index].rows == newValue.rows && weights[index].columns == newValue.columns)
+            weights[index] = newValue
+        }
     }
     
     init (withShape geometry: Geometry, layerCount: Int, inputCount: Int, outputCount: Int) {
@@ -35,10 +41,10 @@ struct Network {
         for i in 0 ... layerCount {
             
             switch geometry {
-            case .Rectangular:
+            case .rectangular:
                 structure.append(inputCount + 1)
                 
-            case .Rombus:
+            case .rombus:
                 let extraWidth = layerCount/2 - abs(layerCount/2 - i)
                 structure.append(inputCount + extraWidth)
             }
@@ -50,7 +56,7 @@ struct Network {
         //Set constant properties
         self.geometry = geometry
         self.layerCount = layerCount
-        self.nodeCount = structure.reduce(0, combine: + )
+        self.nodeCount = structure.reduce(0, + )
         
         
         //Build collection of weight matrices

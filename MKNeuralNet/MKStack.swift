@@ -11,7 +11,7 @@ import Foundation
 class Stack<Element> {
     var items = [Element]()
   
-    func push(item: Element) {
+    func push(_ item: Element) {
         items.append(item)
     }
   

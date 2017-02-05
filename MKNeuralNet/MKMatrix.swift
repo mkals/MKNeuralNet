@@ -84,7 +84,7 @@ struct Matrix : Equatable {
         - operation: function to be performed on all elements of matrix
      - Returns: result as a new matrix
      */
-    func performElementOperation(operation: Double -> Double) -> Matrix {
+    func performElementOperation(_ operation: (Double) -> Double) -> Matrix {
         
         var returnArray = [Double]()
         
@@ -147,7 +147,7 @@ func • (lhs: Matrix, rhs: Matrix) -> Matrix {
     let n = rhs.columns
     let p = lhs.columns
     
-    var product = [Double](count: m*n, repeatedValue: 0.0)
+    var product = [Double](repeating: 0.0, count: m*n)
     
     vDSP_mmulD(lhs.array, 1, rhs.array, 1, &product, 1, UInt(m), UInt(n), UInt(p))
     
@@ -164,7 +164,7 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     
-    var result = [Double](count: lhs.size, repeatedValue: 0)
+    var result = [Double](repeating: 0, count: lhs.size)
     vDSP_vmulD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
     return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }
@@ -178,7 +178,7 @@ func +(lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
 
-    var result = [Double](count: lhs.size, repeatedValue: 0)
+    var result = [Double](repeating: 0, count: lhs.size)
     vDSP_vaddD(lhs.array, 1, rhs.array, 1, &result, 1, UInt(lhs.size))
     return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }
@@ -189,7 +189,7 @@ func +(lhs: Matrix, rhs: Matrix) -> Matrix {
  */
 prefix func - (matrix: Matrix) -> Matrix {
     
-    var result = [Double](count: matrix.size, repeatedValue: 0)
+    var result = [Double](repeating: 0, count: matrix.size)
     var factor = -1.0
     
     vDSP_vsmulD(matrix.array, 1, &factor, &result, 1, UInt(matrix.size)) //TODO: SCALAR MAY NEED WORK
@@ -206,7 +206,7 @@ func - (lhs: Matrix, rhs: Matrix) -> Matrix {
     
     assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
     
-    var result = [Double](count: lhs.size, repeatedValue: 0)
+    var result = [Double](repeating: 0, count: lhs.size)
     vDSP_vsubD(rhs.array, 1, lhs.array, 1, &result, 1, UInt(lhs.size))
     return Matrix.init(rows: lhs.rows, columns: lhs.columns, array: result)
 }

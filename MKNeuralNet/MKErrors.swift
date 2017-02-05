@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum Errors: ErrorType {
+enum Errors: Error {
     
-    case InvalidInitDimensions(arraySize: Int, rows: Int, columns: Int)
-    case InvalidOperationDimensions(lhs: (rows: Int, columns: Int), rhs: (rows: Int, columns: Int))
+    case invalidInitDimensions(arraySize: Int, rows: Int, columns: Int)
+    case invalidOperationDimensions(lhs: (rows: Int, columns: Int), rhs: (rows: Int, columns: Int))
     
 }

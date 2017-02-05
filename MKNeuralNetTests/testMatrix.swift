@@ -20,7 +20,7 @@ class testMatrix: XCTestCase {
         
         let one = Matrix.init(rows: 1, columns: 1, functionToGenerateNumbers: drand48)
         let val = one[1,1]
-        XCTAssert(one.rows == 1 && one.columns == 1 && val >= 0.0 && val <= 1.0)
+        XCTAssert(one.rows == 1 && one.columns == 1 && val >= 0 && val <= 1)
         
     }
 
@@ -38,7 +38,7 @@ class testMatrix: XCTestCase {
         
         XCTAssertEqual(b.transpose(), bt)
         
-        self.measureBlock { 
+        self.measure { 
             self.squareOne.transpose()
         }
     }
@@ -46,29 +46,29 @@ class testMatrix: XCTestCase {
     func testMultiplication() {
         
         //test one element
-        let a = Matrix(rows: 1, columns: 1, array: [5.0])
-        let b = Matrix(rows: 1, columns: 1, array: [2.0])
-        let c = Matrix(rows: 1, columns: 1, array: [10.0])
+        let a = Matrix(rows: 1, columns: 1, array: [5])
+        let b = Matrix(rows: 1, columns: 1, array: [2])
+        let c = Matrix(rows: 1, columns: 1, array: [10])
         
         XCTAssertEqual(a • b, c)
         
         //test row/coumn vectors
-        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
-        let e = Matrix(rows: 1, columns: 3, array: [4.0,5,6])
-        let f = Matrix(rows: 3, columns: 3, array: [4.0,5,6,8,10,12,12,15,18])
-        let g = Matrix(rows: 1, columns: 1, array: [32.0])
+        let d = Matrix(rows: 3, columns: 1, array: [1,2,3])
+        let e = Matrix(rows: 1, columns: 3, array: [4,5,6])
+        let f = Matrix(rows: 3, columns: 3, array: [4,5,6,8,10,12,12,15,18])
+        let g = Matrix(rows: 1, columns: 1, array: [32])
         
         XCTAssertEqual(d • e, f)
         XCTAssertEqual(e • d, g)
         
         //test full matrix
-        let h = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
-        let i = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,10,11,12])
-        let j = Matrix(rows: 3, columns: 3, array: [48.0,54,60,111,126,141,174,198,222])
+        let h = Matrix(rows: 3, columns: 3, array: [1,2,3,4,5,6,7,8,9])
+        let i = Matrix(rows: 3, columns: 3, array: [4,5,6,7,8,9,10,11,12])
+        let j = Matrix(rows: 3, columns: 3, array: [48,54,60,111,126,141,174,198,222])
         
         XCTAssertEqual(h • i, j)
         
-        self.measureBlock { 
+        self.measure { 
             self.squareOne • self.squareTwo
         }
         
@@ -78,87 +78,87 @@ class testMatrix: XCTestCase {
         // This is an example of a performance test case.
         
         //test one element
-        let a = Matrix(rows: 1, columns: 1, array: [5.0])
-        let b = Matrix(rows: 1, columns: 1, array: [2.0])
-        let c = Matrix(rows: 1, columns: 1, array: [10.0])
+        let a = Matrix(rows: 1, columns: 1, array: [5])
+        let b = Matrix(rows: 1, columns: 1, array: [2])
+        let c = Matrix(rows: 1, columns: 1, array: [10])
         
         XCTAssertEqual(a * b, c)
         
         //test row/coumn vectors
-        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
-        let e = Matrix(rows: 3, columns: 1, array: [4.0,5,6])
-        let f = Matrix(rows: 3, columns: 1, array: [4.0,10,18])
+        let d = Matrix(rows: 3, columns: 1, array: [1,2,3])
+        let e = Matrix(rows: 3, columns: 1, array: [4,5,6])
+        let f = Matrix(rows: 3, columns: 1, array: [4,10,18])
         
         XCTAssertEqual(d * e, f)
         
         //test full matrix
-        let g = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
-        let h = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,10,11,12])
-        let i = Matrix(rows: 3, columns: 3, array: [4.0,10,18,28,40,54,70,88,108])
+        let g = Matrix(rows: 3, columns: 3, array: [1,2,3,4,5,6,7,8,9])
+        let h = Matrix(rows: 3, columns: 3, array: [4,5,6,7,8,9,10,11,12])
+        let i = Matrix(rows: 3, columns: 3, array: [4,10,18,28,40,54,70,88,108])
         
         XCTAssertEqual(g * h, i)
         
         //test performance
-        self.measureBlock {
+        self.measure {
             self.squareOne * self.squareTwo
         }
     }
     
     func testAddition() {
         //test one element
-        let a = Matrix(rows: 1, columns: 1, array: [5.0])
-        let b = Matrix(rows: 1, columns: 1, array: [2.0])
-        let c = Matrix(rows: 1, columns: 1, array: [7.0])
+        let a = Matrix(rows: 1, columns: 1, array: [5])
+        let b = Matrix(rows: 1, columns: 1, array: [2])
+        let c = Matrix(rows: 1, columns: 1, array: [7])
         
         XCTAssertEqual(a + b, c)
         
         //test row/coumn vectors
-        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
-        let e = Matrix(rows: 3, columns: 1, array: [4.0,5,6])
-        let f = Matrix(rows: 3, columns: 1, array: [5.0,7,9])
+        let d = Matrix(rows: 3, columns: 1, array: [1,2,3])
+        let e = Matrix(rows: 3, columns: 1, array: [4,5,6])
+        let f = Matrix(rows: 3, columns: 1, array: [5,7,9])
         
         XCTAssertEqual(d + e, f)
         
         //test full matrix
-        let g = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
-        let h = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,10,11,12])
-        let i = Matrix(rows: 3, columns: 3, array: [5.0,7,9,11,13,15,17,19,21])
+        let g = Matrix(rows: 3, columns: 3, array: [1,2,3,4,5,6,7,8,9])
+        let h = Matrix(rows: 3, columns: 3, array: [4,5,6,7,8,9,10,11,12])
+        let i = Matrix(rows: 3, columns: 3, array: [5,7,9,11,13,15,17,19,21])
         
         XCTAssertEqual(g + h, i)
     }
     
     func testSubstraciton() {
         //test one element
-        let a = Matrix(rows: 1, columns: 1, array: [5.0])
-        let b = Matrix(rows: 1, columns: 1, array: [2.0])
-        let c = Matrix(rows: 1, columns: 1, array: [3.0])
+        let a = Matrix(rows: 1, columns: 1, array: [5])
+        let b = Matrix(rows: 1, columns: 1, array: [2])
+        let c = Matrix(rows: 1, columns: 1, array: [3])
         
         XCTAssertEqual(a - b, c)
         
         //test row/coumn vectors
-        let d = Matrix(rows: 3, columns: 1, array: [1.0,2,3])
-        let e = Matrix(rows: 3, columns: 1, array: [4.0,5,6])
-        let f = Matrix(rows: 3, columns: 1, array: [-3.0,-3,-3])
+        let d = Matrix(rows: 3, columns: 1, array: [1,2,3])
+        let e = Matrix(rows: 3, columns: 1, array: [4,5,6])
+        let f = Matrix(rows: 3, columns: 1, array: [-3,-3,-3])
         
         XCTAssertEqual(d - e, f)
         
         //test full matrix
-        let g = Matrix(rows: 3, columns: 3, array: [4.0,5,6,7,8,9,9,9,9])
-        let h = Matrix(rows: 3, columns: 3, array: [1.0,2,3,4,5,6,7,8,9])
-        let i = Matrix(rows: 3, columns: 3, array: [3.0,3,3,3,3,3,2,1,0])
+        let g = Matrix(rows: 3, columns: 3, array: [4,5,6,7,8,9,9,9,9])
+        let h = Matrix(rows: 3, columns: 3, array: [1,2,3,4,5,6,7,8,9])
+        let i = Matrix(rows: 3, columns: 3, array: [3,3,3,3,3,3,2,1,0])
         
         XCTAssertEqual(g - h, i)
     }
     
     func testUnarySubtraction() {
-        let a = Matrix(rows: 1, columns: 1, array: [-5.0])
-        let b = Matrix(rows: 1, columns: 1, array: [5.0])
+        let a = Matrix(rows: 1, columns: 1, array: [-5])
+        let b = Matrix(rows: 1, columns: 1, array: [5])
         
         XCTAssertEqual(a, -b)
         
         //test row/coumn vectors
-        let c = Matrix(rows: 3, columns: 2, array: [1.0,2,3,4,5,6])
-        let d = Matrix(rows: 3, columns: 2, array: [-1.0,-2,-3,-4,-5,-6])
+        let c = Matrix(rows: 3, columns: 2, array: [1,2,3,4,5,6])
+        let d = Matrix(rows: 3, columns: 2, array: [-1,-2,-3,-4,-5,-6])
         
         XCTAssertEqual(c, -d)
     }

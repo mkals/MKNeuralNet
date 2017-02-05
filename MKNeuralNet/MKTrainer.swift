@@ -25,8 +25,6 @@ class Trainer {
         
     }
     
-    
-    
     func batchGradientDecent() -> Double {
         return 0.0
     }

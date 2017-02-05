@@ -8,28 +8,18 @@
 
 import Foundation
 
-protocol Function {
-    func evaluate(input: Double) -> Double
-    func derivate(input: Double) -> Double
+protocol ActivationFunctionable {
+    func evaluate(_ input: Double) -> Double
+    func derivate(_ input: Double) -> Double
 }
 
-enum ActivationFunction {
-    case Sigmoid
-}
-
-extension ActivationFunction: Function {
+struct SigmoidActivationFunction : ActivationFunctionable {
     
-    func evaluate(input: Double) -> Double {
-        switch self {
-        case .Sigmoid:
-            return 1/(1+exp(-input))
-        }
+    func evaluate(_ input: Double) -> Double {
+        return 1/(1+exp(-input))
     }
     
-    func derivate(input: Double) -> Double {
-        switch self {
-        case .Sigmoid:
-            return exp(-input)/pow(1+exp(-input), 2)
-        }
+    func derivate(_ input: Double) -> Double {
+        return exp(-input)/pow(1+exp(-input), 2)
     }
 }

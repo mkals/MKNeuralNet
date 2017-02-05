@@ -13,7 +13,7 @@ class Data {
     let normalizedTrainingInputData: [Double]
     let normalizedTrainingOutputData: [Double]
     
-    private let outputFunction: (encode: (Double -> Double), decode: (Double -> Double))
+    private let outputFunction: (encode: ((Double) -> Double), decode: ((Double) -> Double))
     
     init(inputData: [Double], outputData: [Double]) {
         
@@ -23,15 +23,15 @@ class Data {
         normalizedTrainingOutputData = outputData.map(outputFunction.encode)
     }
     
-    func decodingOutput(prediction: [Double]) -> [Double] {
+    func decodingOutput(_ prediction: [Double]) -> [Double] {
         return prediction.map(outputFunction.decode)
     }
 }
 
-private func linearNormalization(data: [Double]) -> (encode: (Double -> Double), decode: (Double -> Double)) {
+private func linearNormalization(_ data: [Double]) -> (encode: ((Double) -> Double), decode: ((Double) -> Double)) {
     
-    let min = data.minElement()!
-    let max = data.maxElement()!
+    let min = data.min()!
+    let max = data.max()!
     
     return (encode: { ($0 - min) / (max - min) }, decode: { $0 * (max - min) +  min } )
 }

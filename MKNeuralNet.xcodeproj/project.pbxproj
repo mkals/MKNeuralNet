@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E93A69D91C8F7F8B0080307E /* MKStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A69D81C8F7F8B0080307E /* MKStack.swift */; };
+		E97F8D681CDFA0A300B0CD7F /* MKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */; };
+		E97F8D691CDFA0A600B0CD7F /* MKNetworkPropegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84171CCC005700BCFDBD /* MKNetworkPropegation.swift */; };
+		E97F8D6A1CDFA0A800B0CD7F /* MKTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C291C8C5D8500D838C3 /* MKTrainer.swift */; };
+		E97F8D6B1CDFA0AD00B0CD7F /* MKData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C241C8C5D8500D838C3 /* MKData.swift */; };
+		E97F8D6C1CDFA0B000B0CD7F /* MKNetMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */; };
+		E97F8D6D1CDFA0B600B0CD7F /* MKActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */; };
+		E99F495E1CD2726900B2AB88 /* MKCostFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F495D1CD2726900B2AB88 /* MKCostFunction.swift */; };
 		E9CB84141CCBD0BD00BCFDBD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84131CCBD0BD00BCFDBD /* main.swift */; };
 		E9CB84181CCC005700BCFDBD /* MKNetworkPropegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB84171CCC005700BCFDBD /* MKNetworkPropegation.swift */; };
-		E9F0DFE71CB16BD600B53F9D /* MKNeuralNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */; };
+		E9F0DFE71CB16BD600B53F9D /* testDerivative.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFE61CB16BD600B53F9D /* testDerivative.swift */; };
 		E9F0DFED1CB16C1E00B53F9D /* testMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */; };
 		E9F0DFEE1CB1728000B53F9D /* MKMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */; };
 		E9FE9C2A1C8C5D8500D838C3 /* MKNetMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */; };
@@ -37,10 +44,11 @@
 
 /* Begin PBXFileReference section */
 		E93A69D81C8F7F8B0080307E /* MKStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKStack.swift; sourceTree = "<group>"; };
+		E99F495D1CD2726900B2AB88 /* MKCostFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCostFunction.swift; sourceTree = "<group>"; };
 		E9CB84131CCBD0BD00BCFDBD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E9CB84171CCC005700BCFDBD /* MKNetworkPropegation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKNetworkPropegation.swift; sourceTree = "<group>"; };
 		E9F0DFE41CB16BD600B53F9D /* MKNeuralNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MKNeuralNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKNeuralNetTests.swift; sourceTree = "<group>"; };
+		E9F0DFE61CB16BD600B53F9D /* testDerivative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testDerivative.swift; sourceTree = "<group>"; };
 		E9F0DFE81CB16BD600B53F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testMatrix.swift; sourceTree = "<group>"; };
 		E9FE9C191C8C5D5900D838C3 /* MKNeuralNet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MKNeuralNet; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +84,6 @@
 			children = (
 				E9FE9C251C8C5D8500D838C3 /* MKNetwork.swift */,
 				E9CB84171CCC005700BCFDBD /* MKNetworkPropegation.swift */,
-				E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */,
 				E9FE9C291C8C5D8500D838C3 /* MKTrainer.swift */,
 			);
 			name = Network;
@@ -90,21 +97,23 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
-		E9CB841B1CCC019200BCFDBD /* Functionality */ = {
+		E9CB841B1CCC019200BCFDBD /* Recources */ = {
 			isa = PBXGroup;
 			children = (
+				E9FE9C261C8C5D8500D838C3 /* MKActivationFunction.swift */,
+				E99F495D1CD2726900B2AB88 /* MKCostFunction.swift */,
 				E93A69D81C8F7F8B0080307E /* MKStack.swift */,
 				E9FE9C271C8C5D8500D838C3 /* MKMatrix.swift */,
 				E9FE9C281C8C5D8500D838C3 /* MKErrors.swift */,
 			);
-			name = Functionality;
+			name = Recources;
 			sourceTree = "<group>";
 		};
 		E9F0DFE51CB16BD600B53F9D /* MKNeuralNetTests */ = {
 			isa = PBXGroup;
 			children = (
 				E9F0DFEC1CB16C1E00B53F9D /* testMatrix.swift */,
-				E9F0DFE61CB16BD600B53F9D /* MKNeuralNetTests.swift */,
+				E9F0DFE61CB16BD600B53F9D /* testDerivative.swift */,
 				E9F0DFE81CB16BD600B53F9D /* Info.plist */,
 			);
 			path = MKNeuralNetTests;
@@ -135,7 +144,7 @@
 				E9FE9C231C8C5D8500D838C3 /* MKNetMain.swift */,
 				E9CB841A1CCC017400BCFDBD /* Data */,
 				E9CB84191CCC016300BCFDBD /* Network */,
-				E9CB841B1CCC019200BCFDBD /* Functionality */,
+				E9CB841B1CCC019200BCFDBD /* Recources */,
 			);
 			path = MKNeuralNet;
 			sourceTree = "<group>";
@@ -189,9 +198,11 @@
 				TargetAttributes = {
 					E9F0DFE31CB16BD600B53F9D = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					E9FE9C181C8C5D5900D838C3 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -228,9 +239,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97F8D681CDFA0A300B0CD7F /* MKNetwork.swift in Sources */,
+				E97F8D691CDFA0A600B0CD7F /* MKNetworkPropegation.swift in Sources */,
 				E9F0DFED1CB16C1E00B53F9D /* testMatrix.swift in Sources */,
-				E9F0DFE71CB16BD600B53F9D /* MKNeuralNetTests.swift in Sources */,
+				E9F0DFE71CB16BD600B53F9D /* testDerivative.swift in Sources */,
+				E97F8D6D1CDFA0B600B0CD7F /* MKActivationFunction.swift in Sources */,
 				E9F0DFEE1CB1728000B53F9D /* MKMatrix.swift in Sources */,
+				E97F8D6B1CDFA0AD00B0CD7F /* MKData.swift in Sources */,
+				E97F8D6C1CDFA0B000B0CD7F /* MKNetMain.swift in Sources */,
+				E97F8D6A1CDFA0A800B0CD7F /* MKTrainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +262,7 @@
 				E9FE9C2F1C8C5D8500D838C3 /* MKErrors.swift in Sources */,
 				E9FE9C2A1C8C5D8500D838C3 /* MKNetMain.swift in Sources */,
 				E9CB84141CCBD0BD00BCFDBD /* main.swift in Sources */,
+				E99F495E1CD2726900B2AB88 /* MKCostFunction.swift in Sources */,
 				E9FE9C2B1C8C5D8500D838C3 /* MKData.swift in Sources */,
 				E9FE9C301C8C5D8500D838C3 /* MKTrainer.swift in Sources */,
 				E9CB84181CCC005700BCFDBD /* MKNetworkPropegation.swift in Sources */,
@@ -263,6 +281,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.kals.MKNeuralNetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -275,6 +294,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.kals.MKNeuralNetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -362,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -369,6 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
