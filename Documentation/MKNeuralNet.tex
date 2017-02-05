@@ -20,7 +20,9 @@
 \maketitle
 
 \section{Introduction}
-This is an overview of the mechanisms of the neural network MKNeuralNet, and the mathematics backing the algorithm.  
+This is an overview of the mechanisms of the neural network framework MKNeuralNet, and the mathematics backing the algorithm. It was developed as a personal exercise to promote understanding of neural nets and the learning process. 
+
+I worked on this project the spring of 2016 using Swift 2 and an object-oriented approach. The functionality is based on the Apple Accelerate framework, developed for fast large scale mathematical computations. Matrix, vector and scalar operations are however wrapped in Swift code for readability, and speed-tests thus show this algorithm to suffer severe performance penalties. 
 
 \section{Back Propagation}
 
@@ -59,6 +61,7 @@ The wrapper function serves to deal with the first edge case $n=0$, passing in t
 The nextLayer assignment is conditional and will end the recursive call-stack when the layer reached is the final layer of the network. It will assign the edge case values for $n = i$ to the nextLayer variable, and despite this not being strictly a good syntax as there really is no "next layer" to talk about, it suffices to convey the concept. \\
  
 \section{Automatic Differentiation, AD}
+
 Automatic differentiation (AD) is defined as a set of techniques used to numerically evaluate the derivative of a function specified by a computer program. The approach has great potential in that numeric derivatives of arbitrary order functions can be computed automatically, accurately and using a small constant factor more arithmetic operations than required for the evaluation of the original method. When working in arbitrary dimensions in multivariable and vector calculus, computations such as directional derivatives and gradients quickly become too complex to reasonably evaluate by hand. AD may thus be considered a natural and important extension of multivariable calculus to enable working with large and complex datasets. It provides an important backing for algorithms such as gradient descent, commonly used in applications of optimisation and machine learning as well as atmospheric chemistry, breast cancer biostatistical analysis and semiconductor device simulation to name but a few. In this epic, I will explore implementations of AD, focusing on the underlying mathematical notions on which its operation is based. I will start by comparing AD to other more conventional methods of computer aided differentiation, discuss some practical details of implementing forward mode AD and conclude with a short discussion on the power of the main mathematical concept backing these algorithms - the chain rule.
 
 \subsection{Methods of computer aided differentiation}
@@ -74,6 +77,7 @@ When the function $ h $ consists of a product, then $ h $ and $ h' $ have some c
 This leads to the great advantage of AD. Simply put, instead of letting the symbolic expressions bulge, the symbolic differentiation is divided into layers and numerically evaluated after the computation of each layer. This concept is in fact so powerful, that far from encountering an exponential program complexity, the increase will follow a linear relationship. The cost of this potentially huge increase in speed is the loss of a symbolic result. 
 
 When performing AD, the chain rule is repeatedly applied to the expression at hand until arriving at partials simple enough to be easily evaluated. The order in which these operations are performed will have a large impact on performance, as it determines the number times the graph will have to be traversed (hereafter referred to as number of sweeps) to obtain the full Jacobean matrix. The two extremes are known as forward mode (evaluates the partial derivative of a node with respect to an input variable) and reverse mode(evaluates the partial derivative of each node with respect an output variable). Determining the minimum number of arithmetic operations required to traverse the graph is known as the optimal Jacobean accumulation problem. Solving it would give the best path for traversing the graph. The optimal Jacobean accumulation problem is however NP-complete (in short, meaning it requires far more computational power than performing the AD itself).
+
 \subsection{Forward Mode}
 
 Consider the function 
